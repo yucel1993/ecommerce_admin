@@ -14,6 +14,7 @@ interface EmailContent {
 }
 
 const sendMail = (to: string, subject: string, message: string): void => {
+  console.log(to, subject, message);
   // Set Passive:
   const mailSettings: MailSettings = {
     service: "Gmail",

@@ -10,10 +10,7 @@ export default function RootLayout({
   const { sessionClaims } = auth();
 
   const userId = sessionClaims?.userId as string;
-  console.log({ userId });
-  if (userId === process.env.NEXT_PUBLIC_ADMIN_SECRET) {
-    console.log("its true");
-  }
+
   const adminCheck = userId === process.env.NEXT_PUBLIC_ADMIN_SECRET;
   return (
     <div className="flex h-screen flex-col">

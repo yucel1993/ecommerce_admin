@@ -64,10 +64,12 @@ export const createOrder = async (order: CreateOrderParams) => {
 
     const buyer = await User.findById(order.buyerId);
     const event = await Event.findById(order.eventId);
-
     const to = buyer.email; // Replace with the user's email
     const subject = "Thank you for your purchase";
     const message = `Thank you for your purchase. Your order has been successfully processed. ${event.title} has been sent to the delivery`;
+    console.log({ to });
+    console.log({ subject });
+    console.log({ message });
     sendMail(to, subject, message);
 
     return JSON.parse(JSON.stringify(newOrder));

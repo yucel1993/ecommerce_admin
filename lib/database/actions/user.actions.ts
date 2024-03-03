@@ -9,9 +9,7 @@ import Order from "../models/order.model";
 
 export async function createUser(user: CreateUserParams) {
   try {
-    console.log("hey user");
     connectToDatabase();
-    console.log("connect to the datra base passed");
 
     const newUser = await User.create(user);
     return JSON.parse(JSON.stringify(newUser));
