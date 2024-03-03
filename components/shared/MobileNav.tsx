@@ -10,7 +10,7 @@ import Image from "next/image";
 import { Separator } from "../ui/separator";
 import NavItems from "./NavItems";
 
-const MobileNav = () => {
+const MobileNav = ({ adminCheck }: { adminCheck: boolean }) => {
   return (
     <nav className="md:hidden">
       <Sheet>

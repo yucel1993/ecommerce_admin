@@ -21,14 +21,12 @@ export type CreateEventParams = {
   event: {
     title: string;
     description: string;
-    location: string;
+
     imageUrl: string;
-    startDateTime: Date;
-    endDateTime: Date;
+    stock: String;
+    brandId: String;
     categoryId: string;
     price: string;
-    isFree: boolean;
-    url: string;
   };
   path: string;
 };
@@ -40,13 +38,11 @@ export type UpdateEventParams = {
     title: string;
     imageUrl: string;
     description: string;
-    location: string;
-    startDateTime: Date;
-    endDateTime: Date;
+
+    stock: String;
+    brandId: String;
     categoryId: string;
     price: string;
-    isFree: boolean;
-    url: string;
   };
   path: string;
 };
@@ -101,6 +97,9 @@ export type Event = {
 // ====== CATEGORY PARAMS
 export type CreateCategoryParams = {
   categoryName: string;
+};
+export type CreateBrandParams = {
+  brandName: string;
 };
 
 // ====== ORDER PARAMS
