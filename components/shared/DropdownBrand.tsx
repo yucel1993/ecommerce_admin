@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Input } from "../ui/input";
 
-import { IBrand } from "@/lib/database/models/brand.model";
+import { IBrand } from "@/lib/database/models/brand.modal";
 import {
   createBrand,
   getAllBrands,

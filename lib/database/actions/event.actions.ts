@@ -16,6 +16,7 @@ import {
   GetEventsByUserParams,
   GetRelatedEventsByCategoryParams,
 } from "@/types";
+import Brand from "../models/brand.modal";
 
 const getCategoryByName = async (name: string) => {
   return Category.findOne({ name: { $regex: name, $options: "i" } });
@@ -28,7 +29,8 @@ const populateEvent = (query: any) => {
       model: User,
       select: "_id firstName lastName",
     })
-    .populate({ path: "category", model: Category, select: "_id name" });
+    .populate({ path: "category", model: Category, select: "_id name" })
+    .populate({ path: "brand", model: Brand, select: "_id name" });
 };
 
 // CREATE
@@ -42,6 +44,7 @@ export async function createEvent({ userId, event, path }: CreateEventParams) {
     const newEvent = await Event.create({
       ...event,
       category: event.categoryId,
+      brand: event.brandId,
       organizer: userId,
     });
     revalidatePath(path);

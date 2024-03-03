@@ -2,7 +2,7 @@
 
 import { handleError } from "../../utils";
 import { connectToDatabase } from "..";
-import Brand from "../models/brand.model";
+import Brand from "../models/brand.modal";
 import { CreateBrandParams } from "@/types";
 
 export const createBrand = async ({ brandName }: CreateBrandParams) => {
