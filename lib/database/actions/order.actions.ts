@@ -14,6 +14,9 @@ import Order from "../models/order.model";
 import Event from "../models/event.model";
 import { ObjectId } from "mongodb";
 import User from "../models/user.modal";
+import Category from "../models/category.model";
+import Brand from "../models/brand.modal";
+import sendMail from "@/components/shared/SendEmail";
 
 export const checkoutOrder = async (order: CheckoutOrderParams) => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
@@ -58,6 +61,14 @@ export const createOrder = async (order: CreateOrderParams) => {
       event: order.eventId,
       buyer: order.buyerId,
     });
+
+    const buyer = await User.findById(order.buyerId);
+    const event = await Event.findById(order.eventId);
+
+    const to = buyer.email; // Replace with the user's email
+    const subject = "Thank you for your purchase";
+    const message = `Thank you for your purchase. Your order has been successfully processed. ${event.title} has been sent to the delivery`;
+    sendMail(to, subject, message);
 
     return JSON.parse(JSON.stringify(newOrder));
   } catch (error) {
@@ -148,11 +159,23 @@ export async function getOrdersByUser({
       .populate({
         path: "event",
         model: Event,
-        populate: {
-          path: "organizer",
-          model: User,
-          select: "_id firstName lastName email",
-        },
+        populate: [
+          {
+            path: "organizer",
+            model: User,
+            select: "_id firstName lastName email",
+          },
+          {
+            path: "category",
+            model: Category,
+            select: "_id name",
+          },
+          {
+            path: "brand",
+            model: Brand,
+            select: "_id name",
+          },
+        ],
       });
 
     const ordersCount = await Order.distinct("event._id").countDocuments(

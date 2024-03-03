@@ -18,7 +18,10 @@ const Card = ({ event, hasOrderLink, hidePrice, homePage }: CardProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
-  const isEventCreator = userId === event.organizer._id.toString();
+  const isEventCreator =
+    event.organizer &&
+    event.organizer._id &&
+    userId === event.organizer._id.toString();
 
   return (
     <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[438px]">
@@ -45,16 +48,14 @@ const Card = ({ event, hasOrderLink, hidePrice, homePage }: CardProps) => {
       )}
 
       <div className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4">
-        {!hidePrice && (
-          <div className="flex gap-2">
-            <span className="p-semibold-14 w-min rounded-full bg-green-100 px-4 py-1 text-green-60">
-              ${event.price}
-            </span>
-            <p className="p-semibold-14 min-w-fit rounded-full bg-grey-500/10 px-4 py-1 text-grey-500 line-clamp-1">
-              Category: {event.category.name}
-            </p>
-          </div>
-        )}
+        <div className="flex gap-2">
+          <span className="p-semibold-14 w-min rounded-full bg-green-100 px-4 py-1 text-green-60">
+            ${event.price}
+          </span>
+          <p className="p-semibold-14 min-w-fit rounded-full bg-grey-500/10 px-4 py-1 text-grey-500 line-clamp-1">
+            Category: {event.category.name}
+          </p>
+        </div>
 
         <p className="p-medium-16 p-medium-18 text-grey-500">
           Brand: {event?.brand?.name}

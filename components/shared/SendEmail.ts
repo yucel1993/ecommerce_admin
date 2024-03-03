@@ -17,8 +17,8 @@ const sendMail = (to: string, subject: string, message: string): void => {
   // Set Passive:
   const mailSettings: MailSettings = {
     service: "Gmail",
-    user: "jackalzero1234@gmail.com",
-    pass: "evcntyenzbhgagez", // Use app password: https://myaccount.google.com/u/1/apppasswords
+    user: process.env.NEXT_PUBLIC_ADMIN_MAIL!,
+    pass: process.env.NEXT_PUBLIC_ADMIN_PASS!, // Use app password: https://myaccount.google.com/u/1/apppasswords
   };
 
   const emailContent: EmailContent = {
