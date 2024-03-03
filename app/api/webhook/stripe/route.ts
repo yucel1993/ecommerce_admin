@@ -1,6 +1,7 @@
 import stripe from "stripe";
 import { NextResponse } from "next/server";
 import { createOrder } from "@/lib/database/actions/order.actions";
+import sendMail from "@/components/shared/SendEmail";
 
 export async function POST(request: Request) {
   const body = await request.text();
@@ -30,6 +31,12 @@ export async function POST(request: Request) {
       totalAmount: amount_total ? (amount_total / 100).toString() : "0",
       createdAt: new Date(),
     };
+
+    // const to = "example@example.com"; // Replace with the user's email
+    // const subject = "Thank you for your purchase";
+    // const message =
+    //   "Thank you for your purchase. Your order has been successfully processed.";
+    // sendMail(to, subject, message);
 
     const newOrder = await createOrder(order);
     return NextResponse.json({ message: "OK", order: newOrder });

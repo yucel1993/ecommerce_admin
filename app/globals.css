@@ -179,7 +179,7 @@ body {
   }
 
   .p-medium-16 {
-    @apply text-[16px] font-medium leading-[24px];
+    @apply text-[20px] font-bold leading-[24px];
   }
 
   .p-regular-16 {

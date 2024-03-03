@@ -31,7 +31,7 @@ const MobileNav = ({ adminCheck }: { adminCheck: boolean }) => {
             height={38}
           />
           <Separator className="border border-gray-50" />
-          <NavItems />
+          <NavItems adminCheck={adminCheck} />
         </SheetContent>
       </Sheet>
     </nav>

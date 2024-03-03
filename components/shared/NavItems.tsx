@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-const NavItems = ({ adminCheck }: { adminCheck: boolean }) => {
+const NavItems = ({ adminCheck }: { adminCheck?: boolean }) => {
   const pathname = usePathname();
 
   return (
