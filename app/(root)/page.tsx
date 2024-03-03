@@ -25,11 +25,10 @@ export default async function Home({ searchParams }: SearchParamProps) {
         <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0">
           <div className="flex flex-col justify-center gap-8">
             <h1 className="h1-bold">
-              Host, Connect, Celebrate: Your Events, Our Platform!
+              You wan to buy something , wellcome to our platform
             </h1>
             <p className="p-regular-20 md:p-regular-24">
-              Book and learn helpful tips from 3,168+ mentors in world-class
-              companies with our global community.
+              Purchasing has never been so easy with our platform.
             </p>
             <Button size="lg" asChild className="button w-full sm:w-fit">
               <Link href="#events">Explore Now</Link>
@@ -51,7 +50,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
         className="wrapper my-8 flex flex-col gap-8 md:gap-12"
       >
         <h2 className="h2-bold">
-          Trust by <br /> Thousands of Events
+          Trust by <br /> Thousands of Customers
         </h2>
 
         <div className="flex w-full flex-col gap-5 md:flex-row">
@@ -61,12 +60,13 @@ export default async function Home({ searchParams }: SearchParamProps) {
 
         <Collection
           data={events?.data}
-          emptyTitle="No Events Found"
+          emptyTitle="No Products Found"
           emptyStateSubtext="Come back later"
           collectionType="All_Events"
           limit={6}
           page={page}
           totalPages={events?.totalPages}
+          homePage={false}
         />
       </section>
     </>

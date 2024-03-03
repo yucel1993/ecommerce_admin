@@ -1,6 +1,11 @@
+import CategoryFilter from "@/components/shared/CategoryFilter";
 import Collection from "@/components/shared/Collection";
+import Search from "@/components/shared/Search";
 import { Button } from "@/components/ui/button";
-import { getEventsByUser } from "@/lib/database/actions/event.actions";
+import {
+  getAllEvents,
+  getEventsByUser,
+} from "@/lib/database/actions/event.actions";
 import { getOrdersByUser } from "@/lib/database/actions/order.actions";
 import { IOrder } from "@/lib/database/models/order.model";
 import { SearchParamProps } from "@/types";
@@ -20,6 +25,16 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
   const orderedEvents = orders?.data.map((order: IOrder) => order.event) || [];
   const organizedEvents = await getEventsByUser({ userId, page: eventsPage });
   const adminCheck = userId === process.env.NEXT_PUBLIC_ADMIN_SECRET;
+
+  const page = Number(searchParams?.page) || 1;
+  const searchText = (searchParams?.query as string) || "";
+  const category = (searchParams?.category as string) || "";
+  const events = await getAllEvents({
+    query: searchText,
+    category,
+    page,
+    limit: 6,
+  });
   return (
     <>
       {!adminCheck ? (
@@ -36,8 +51,8 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
           <section className="wrapper my-8">
             <Collection
               data={orderedEvents}
-              emptyTitle="No event tickets purchased yet"
-              emptyStateSubtext="No worries - plenty of exciting events to explore!"
+              emptyTitle="No product purchased yet"
+              emptyStateSubtext="No worries - plenty of exciting Productsto explore!"
               collectionType="My_Tickets"
               limit={3}
               page={ordersPage}
@@ -57,16 +72,21 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
             </div>
           </section>
 
+          <div className="flex mt-10 w-full flex-col gap-5 md:flex-row">
+            <Search />
+            <CategoryFilter />
+          </div>
+
           <section className="wrapper my-8">
             <Collection
-              data={organizedEvents?.data}
-              emptyTitle="No events have been created yet"
-              emptyStateSubtext="Go create some now"
-              collectionType="Events_Organized"
-              limit={3}
-              page={eventsPage}
-              urlParamName="eventsPage"
-              totalPages={organizedEvents?.totalPages}
+              data={events?.data}
+              emptyTitle="No Products Found"
+              emptyStateSubtext="Come back later"
+              collectionType="All_Events"
+              limit={6}
+              page={page}
+              totalPages={events?.totalPages}
+              homePage={true}
             />
           </section>
         </>

@@ -10,9 +10,10 @@ type CardProps = {
   event: IEvent;
   hasOrderLink?: boolean;
   hidePrice?: boolean;
+  homePage?: boolean;
 };
 
-const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
+const Card = ({ event, hasOrderLink, hidePrice, homePage }: CardProps) => {
   console.log({ event });
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
@@ -28,7 +29,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
       />
       {/* IS EVENT CREATOR ... */}
 
-      {isEventCreator && !hidePrice && (
+      {isEventCreator && !hidePrice && homePage && (
         <div className="absolute right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
           <Link href={`/events/${event._id}/update`}>
             <Image
