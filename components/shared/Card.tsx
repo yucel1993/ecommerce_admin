@@ -53,23 +53,23 @@ const Card = ({ event, hasOrderLink, hidePrice, homePage }: CardProps) => {
             ${event.price}
           </span>
           <p className="p-semibold-14 min-w-fit rounded-full bg-grey-500/10 px-4 py-1 text-grey-500 line-clamp-1">
-            Category: {event.category.name}
+            {event.category.name}
           </p>
         </div>
 
         <p className="p-medium-16 p-medium-18 text-grey-500">
-          Brand: {event?.brand?.name}
+          {event?.brand?.name}
         </p>
 
         <Link href={`/events/${event._id}`}>
           <p className="p-medium-16 md:p-medium-20 line-clamp-2 flex-1 text-black">
-            Title: {event.title}
+            {event.title}
           </p>
         </Link>
 
         <div className="flex-between w-full">
           <p className="p-medium-14 md:p-medium-16 text-grey-600">
-            Remained Stock :{homePage ? event.stock : ""}
+            {homePage ? ` Remained Stock : ${event.stock}  ` : ``}
           </p>
 
           {hasOrderLink && (
