@@ -10,8 +10,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "AmazonClone",
-  description: "AmazonClone is a platform for online purchase products",
+  title: "SoldOutClone",
+  description: "SoldOutClone is a platform for online purchase products",
   icons: {
     icon: "/assets/images/logo.svg",
   },

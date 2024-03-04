@@ -10,7 +10,7 @@ const Header = ({ adminCheck }: { adminCheck: boolean }) => {
     <header className="w-full border-b">
       <div className="wrapper flex items-center justify-between">
         <Link href="/" className="w-36">
-          <h1 className="text-red-500 font-poppins font-extrabold">Amazon</h1>
+          <h1 className="text-red-500 font-poppins font-extrabold">SoldOut</h1>
         </Link>
 
         <SignedIn>
