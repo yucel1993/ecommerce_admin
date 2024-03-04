@@ -24,12 +24,7 @@ const MobileNav = ({ adminCheck }: { adminCheck: boolean }) => {
           />
         </SheetTrigger>
         <SheetContent className="flex flex-col gap-6 bg-white md:hidden">
-          <Image
-            src="/assets/images/logo.svg"
-            alt="logo"
-            width={128}
-            height={38}
-          />
+          <h1 className="text-red-500 font-poppins font-extrabold">Amazon</h1>
           <Separator className="border border-gray-50" />
           <NavItems adminCheck={adminCheck} />
         </SheetContent>

@@ -10,12 +10,7 @@ const Header = ({ adminCheck }: { adminCheck: boolean }) => {
     <header className="w-full border-b">
       <div className="wrapper flex items-center justify-between">
         <Link href="/" className="w-36">
-          <Image
-            src="/assets/images/logo.svg"
-            width={128}
-            height={38}
-            alt="Evently logo"
-          />
+          <h1 className="text-red-500 font-poppins font-extrabold">Amazon</h1>
         </Link>
 
         <SignedIn>
