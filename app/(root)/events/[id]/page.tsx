@@ -1,5 +1,6 @@
 import CheckoutButton from "@/components/shared/CheckoutButton";
 import Collection from "@/components/shared/Collection";
+import PayPalButton from "@/components/shared/PayPalButton";
 import {
   getEventById,
   getRelatedEventsByCategory,
@@ -49,6 +50,8 @@ const EventDetails = async ({
             </div>
 
             <CheckoutButton event={event} />
+
+            <PayPalButton event={event} />
 
             <div className="flex flex-col gap-5"></div>
             <p className="p-medium-16 lg:p-regular-18  text-primary-500 font-extrabold ">

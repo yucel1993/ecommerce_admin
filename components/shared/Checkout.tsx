@@ -34,9 +34,9 @@ const Checkout = ({ event, userId }: { event: IEvent; userId: string }) => {
   };
 
   return (
-    <form action={onCheckout} method="post">
-      <Button type="submit" role="link" size="lg" className="button sm:w-fit">
-        Buy Product
+    <form action={onCheckout} method="post" className="w-full">
+      <Button type="submit" role="link" size="lg" className="sm:w-full">
+        Stripe
       </Button>
     </form>
   );
