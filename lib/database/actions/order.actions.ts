@@ -70,7 +70,7 @@ export const createOrder = async (order: CreateOrderParams) => {
     console.log({ to });
     console.log({ subject });
     console.log({ message });
-    sendMail(to, subject, message);
+    await sendMail(to, subject, message);
 
     return JSON.parse(JSON.stringify(newOrder));
   } catch (error) {

@@ -7,12 +7,13 @@ import React from "react";
 
 const NavItems = ({ adminCheck }: { adminCheck?: boolean }) => {
   const pathname = usePathname();
+  console.log(adminCheck);
 
   return (
     <ul className="md:flex-between flex w-full flex-col items-start gap-5 md:flex-row">
       {headerLinks.map((link) => {
-        // Check if the link is "Create Event" and adminCheck is false
-        if (link.label === "Create Event" && !adminCheck) {
+        // Check if the link is "Create Product" and adminCheck is false
+        if (link.label === "Create Product" && !adminCheck) {
           // Skip rendering this link
           return null;
         }
