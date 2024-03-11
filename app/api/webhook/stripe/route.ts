@@ -2,6 +2,9 @@ import stripe from "stripe";
 import { NextResponse } from "next/server";
 import { createOrder } from "@/lib/database/actions/order.actions";
 import sendMail from "@/components/shared/SendEmail";
+import { connectToDatabase } from "@/lib/database";
+import User from "@/lib/database/models/user.modal";
+import Event from "@/lib/database/models/event.model";
 
 export async function POST(request: Request) {
   console.log("start of the function");
@@ -34,12 +37,14 @@ export async function POST(request: Request) {
       totalAmount: amount_total ? (amount_total / 100).toString() : "0",
       createdAt: new Date(),
     };
-
-    const to = "alpagut1993@gmail.com"; // Replace with the user's email
-    const subject = "Someone has bought something from you";
+    await connectToDatabase();
+    const buyer = await User.findById(order.buyerId);
+    const event2 = await Event.findById(order.eventId);
+    const to = buyer?.email; // Replace with the user's email
+    const subject = event2?.title;
     const message = "Check your dashboard.";
     sendMail(to, subject, message);
-    const to1 = "example@example.com"; // Replace with the user's email
+    const to1 = "alpagut1993@gmail.com"; // Replace with the user's email
     const subject1 = "Someone has bought something from you";
     const message1 = "Check your dashboard.";
     sendMail(to1, subject1, message1);
