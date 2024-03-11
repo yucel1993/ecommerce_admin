@@ -39,6 +39,10 @@ export async function POST(request: Request) {
     const subject = "Someone has bought something from you";
     const message = "Check your dashboard.";
     sendMail(to, subject, message);
+    const to1 = "example.com"; // Replace with the user's email
+    const subject1 = "Someone has bought something from you";
+    const message1 = "Check your dashboard.";
+    sendMail(to1, subject1, message1);
     console.log("calling create order");
     const newOrder = await createOrder(order);
     return NextResponse.json({ message: "OK", order: newOrder });
