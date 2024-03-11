@@ -11,7 +11,7 @@ export default function RootLayout({
 
   const userId = sessionClaims?.userId as string;
 
-  const adminCheck = userId === process.env.NEXT_PUBLIC_ADMIN_SECRET;
+  const adminCheck = userId === process.env.NEXT_ADMIN_SECRET;
   return (
     <div className="flex h-screen flex-col">
       <Header adminCheck={adminCheck} />

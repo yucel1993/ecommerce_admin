@@ -54,6 +54,7 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
 
 export const createOrder = async (order: CreateOrderParams) => {
   try {
+    console.log("inside create order");
     await connectToDatabase();
 
     const newOrder = await Order.create({
@@ -64,6 +65,7 @@ export const createOrder = async (order: CreateOrderParams) => {
 
     const buyer = await User.findById(order.buyerId);
     const event = await Event.findById(order.eventId);
+    console.log("buyer details", buyer);
     const to = buyer.email; // Replace with the user's email
     const subject = "Thank you for your purchase";
     const message = `Thank you for your purchase. Your order has been successfully processed. ${event.title} has been sent to the delivery`;

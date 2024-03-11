@@ -25,7 +25,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
 
   const orderedEvents = orders?.data.map((order: IOrder) => order.event) || [];
   const organizedEvents = await getEventsByUser({ userId, page: eventsPage });
-  const adminCheck = userId === process.env.NEXT_PUBLIC_ADMIN_SECRET;
+  const adminCheck = userId === process.env.NEXT_ADMIN_SECRET;
 
   const page = Number(searchParams?.page) || 1;
   const searchText = (searchParams?.query as string) || "";
