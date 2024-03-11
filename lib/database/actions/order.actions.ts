@@ -66,9 +66,9 @@ export const createOrder = async (order: CreateOrderParams) => {
     const buyer = await User.findById(order.buyerId);
     const event = await Event.findById(order.eventId);
     console.log("buyer details", buyer);
-    const to = buyer.email; // Replace with the user's email
+    const to = buyer?.email; // Replace with the user's email
     const subject = "Thank you for your purchase.this one creteOrder";
-    const message = `Thank you for your purchase. Your order has been successfully processed. ${event.title} has been sent to the delivery`;
+    const message = `Thank you for your purchase. Your order has been successfully processed. ${event?.title} has been sent to the delivery`;
     console.log({ to });
     console.log({ subject });
     console.log({ message });
