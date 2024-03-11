@@ -13,11 +13,7 @@ interface EmailContent {
   text: string;
 }
 
-const sendMail = async (
-  to: string,
-  subject: string,
-  message: string
-): Promise<void> => {
+const sendMail = (to: string, subject: string, message: string) => {
   console.log(to, subject, message);
   // Set Passive:
   const mailSettings: MailSettings = {
