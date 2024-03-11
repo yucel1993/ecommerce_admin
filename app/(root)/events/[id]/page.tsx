@@ -5,7 +5,7 @@ import {
   getEventById,
   getRelatedEventsByCategory,
 } from "@/lib/database/actions/event.actions";
-import { formatDateTime } from "@/lib/utils";
+
 import { SearchParamProps } from "@/types";
 import Image from "next/image";
 
@@ -30,7 +30,7 @@ const EventDetails = async ({
             alt="hero image"
             width={1000}
             height={1000}
-            className="h-full min-h-[300px] object-cover object-center"
+            className="h-full min-h-[300px] object-contain  w-min-[300px] lg:w-[1200px]"
           />
 
           <div className="flex w-full flex-col gap-8 p-5 md:p-10">
