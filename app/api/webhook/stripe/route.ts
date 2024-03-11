@@ -25,7 +25,7 @@ export async function POST(request: Request) {
   // CREATE
   if (eventType === "checkout.session.completed") {
     console.log("inside checkout.session.completed");
-    const { id, amount_total, metadata, customer_email } = event.data.object;
+    const { id, amount_total, metadata } = event.data.object;
 
     const order = {
       stripeId: id,
@@ -35,10 +35,9 @@ export async function POST(request: Request) {
       createdAt: new Date(),
     };
 
-    const to = customer_email!; // Replace with the user's email
-    const subject = "Thank you for your purchase ,stripe";
-    const message =
-      "Thank you for your purchase. Your order has been successfully processed.";
+    const to = "alpagut1993@gmail.com"; // Replace with the user's email
+    const subject = "Someone has bought something from you";
+    const message = "Check your dashboard.";
     sendMail(to, subject, message);
     console.log("calling create order");
     const newOrder = await createOrder(order);
