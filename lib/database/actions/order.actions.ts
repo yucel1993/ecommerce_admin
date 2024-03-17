@@ -71,22 +71,6 @@ export const createOrder = async (order: CreateOrderParams) => {
       $inc: { stock: decrementValue },
     });
 
-    const buyer = await User.findById(order.buyerId);
-    const event = await Event.findById(order.eventId);
-
-    // const to = buyer?.email; // Replace with the user's email
-    // const subject = "Thank you for your purchase.this one creteOrder";
-    // const message = `Thank you for your purchase. Your order has been successfully processed. ${event?.title} has been sent to the delivery`;
-
-    // sendMail(to, subject, message);
-    // await fetch("/api/email", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ to, subject, message }),
-    // });
-
     return JSON.parse(JSON.stringify(newOrder));
   } catch (error) {
     handleError(error);
