@@ -9,7 +9,7 @@ export interface IEvent extends Document {
   imageUrl: string;
 
   price: string;
-  stock: string;
+  stock: number;
 
   brand: { _id: string; name: string };
   category: { _id: string; name: string };
@@ -24,7 +24,7 @@ const EventSchema = new Schema({
   imageUrl: { type: String, required: true },
 
   price: { type: String },
-  stock: { type: String },
+  stock: { type: Number },
   brand: { type: Schema.Types.ObjectId, ref: "Brand" },
   category: { type: Schema.Types.ObjectId, ref: "Category" },
   organizer: { type: Schema.Types.ObjectId, ref: "User" },
