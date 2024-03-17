@@ -67,7 +67,7 @@ export const createOrder = async (order: CreateOrderParams) => {
 
     // Use the numeric value in $inc operator
     await Event.findByIdAndUpdate(order.eventId, {
-      $inc: { stock: decrementValue },
+      $dec: { stock: decrementValue },
     });
 
     const buyer = await User.findById(order.buyerId);
@@ -90,10 +90,8 @@ export const createOrder = async (order: CreateOrderParams) => {
 };
 
 // GET ORDERS BY EVENT
-export async function getOrdersByEvent({
-  searchString,
-  eventId,
-}: GetOrdersByEventParams) {
+// GET ORDERS BY EVENT
+export async function getOrdersByEvent({ eventId }: GetOrdersByEventParams) {
   try {
     await connectToDatabase();
 
@@ -101,6 +99,9 @@ export async function getOrdersByEvent({
     const eventObjectId = new ObjectId(eventId);
 
     const orders = await Order.aggregate([
+      {
+        $match: { event: eventObjectId },
+      },
       {
         $lookup: {
           from: "users",
@@ -134,14 +135,6 @@ export async function getOrdersByEvent({
           buyer: {
             $concat: ["$buyer.firstName", "-", "$buyer.lastName"],
           },
-        },
-      },
-      {
-        $match: {
-          $and: [
-            { eventId: eventObjectId },
-            { buyer: { $regex: RegExp(searchString, "i") } },
-          ],
         },
       },
     ]);
