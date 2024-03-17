@@ -8,7 +8,7 @@ export const eventFormSchema = z.object({
     .max(400, "Description must be less than 400 characters"),
 
   imageUrl: z.string(),
-  stock: z.string(),
+  stock: z.number(),
   brandId: z.string(),
 
   categoryId: z.string(),

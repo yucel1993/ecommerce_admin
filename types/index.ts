@@ -23,7 +23,7 @@ export type CreateEventParams = {
     description: string;
 
     imageUrl: string;
-    stock: String;
+    stock: number;
     brandId: String;
     categoryId: string;
     price: string;
@@ -39,7 +39,7 @@ export type UpdateEventParams = {
     imageUrl: string;
     description: string;
 
-    stock: String;
+    stock: number;
     brandId: String;
     categoryId: string;
     price: string;
