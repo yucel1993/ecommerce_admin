@@ -62,20 +62,16 @@ export const createOrder = async (order: CreateOrderParams) => {
       event: order.eventId,
       buyer: order.buyerId,
     });
+    console.log("OderdId iS here", order.eventId);
     await Event.findByIdAndUpdate(order.eventId, { $inc: { stock: -1 } });
 
-    const buyer = await User.findById(order.buyerId);
-    const event = await Event.findById(order.eventId);
-    console.log("buyer details", buyer);
-    console.log(buyer?.email);
-    console.log(event?.title);
-    const to = buyer?.email; // Replace with the user's email
-    const subject = "Thank you for your purchase.this one creteOrder";
-    const message = `Thank you for your purchase. Your order has been successfully processed. ${event?.title} has been sent to the delivery`;
-    console.log({ to });
-    console.log({ subject });
-    console.log({ message });
-    sendMail(to, subject, message);
+    // const to = buyer?.email; // Replace with the user's email
+    // const subject = "Thank you for your purchase.this one creteOrder";
+    // const message = `Thank you for your purchase. Your order has been successfully processed. ${event?.title} has been sent to the delivery`;
+    // console.log({ to });
+    // console.log({ subject });
+    // console.log({ message });
+    // sendMail(to, subject, message);
 
     return JSON.parse(JSON.stringify(newOrder));
   } catch (error) {

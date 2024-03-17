@@ -14,7 +14,6 @@ type CardProps = {
 };
 
 const Card = ({ event, hasOrderLink, hidePrice, homePage }: CardProps) => {
-  console.log({ event });
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
