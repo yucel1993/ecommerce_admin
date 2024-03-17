@@ -67,7 +67,7 @@ export const createOrder = async (order: CreateOrderParams) => {
 
     // Use the numeric value in $inc operator
     await Event.findByIdAndUpdate(order.eventId, {
-      $dec: { stock: decrementValue },
+      $inc: { stock: decrementValue },
     });
 
     const buyer = await User.findById(order.buyerId);
