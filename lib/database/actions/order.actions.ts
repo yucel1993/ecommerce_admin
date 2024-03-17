@@ -62,6 +62,7 @@ export const createOrder = async (order: CreateOrderParams) => {
       event: order.eventId,
       buyer: order.buyerId,
     });
+    await Event.findByIdAndUpdate(order.eventId, { $inc: { stock: -1 } });
 
     const buyer = await User.findById(order.buyerId);
     const event = await Event.findById(order.eventId);
