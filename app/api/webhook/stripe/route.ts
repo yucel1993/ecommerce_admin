@@ -38,6 +38,17 @@ export async function POST(request: Request) {
       createdAt: new Date(),
     };
     await connectToDatabase();
+    const buyer = await User.findById(order.buyerId);
+    const event2 = await Event.findById(order.eventId);
+    const to = buyer?.email; // Replace with the user's email
+    const subject = event2?.title;
+    const message = `${event2?.title} has been sent to delivery`;
+    sendMail(to, subject, message);
+    const to1 = "alpagut1993@gmail.com"; // Replace with the user's email
+    const subject1 = event2?.title;
+    const message1 = `${event2?.title} has been bought by ${order.buyerId}`;
+    sendMail(to1, subject1, message1);
+    console.log("calling create order");
     const newOrder = await createOrder(order);
     return NextResponse.json({ message: "OK", order: newOrder });
   }
