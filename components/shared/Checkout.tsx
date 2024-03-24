@@ -4,6 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { IEvent } from "@/lib/database/models/event.model";
 import { Button } from "../ui/button";
 import { checkoutOrder } from "@/lib/database/actions/order.actions";
+import mongoose from "mongoose";
 
 loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
@@ -21,6 +22,11 @@ const Checkout = ({ event, userId }: { event: IEvent; userId: string }) => {
       );
     }
   }, []);
+
+  console.log({ userId });
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
+    throw new Error("Invalid userId"); // Or handle the error appropriately
+  }
 
   const onCheckout = async () => {
     const order = {
