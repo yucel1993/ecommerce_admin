@@ -23,7 +23,7 @@ const Checkout = ({ event, userId }: { event: IEvent; userId: string }) => {
     }
   }, []);
 
-  console.log({ userId });
+  console.log({ userId }, "Before Order");
   if (!mongoose.Types.ObjectId.isValid(userId)) {
     throw new Error("Invalid userId"); // Or handle the error appropriately
   }
