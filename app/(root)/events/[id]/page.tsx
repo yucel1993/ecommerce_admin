@@ -7,6 +7,7 @@ import {
 } from "@/lib/database/actions/event.actions";
 
 import { SearchParamProps } from "@/types";
+import { auth } from "@clerk/nextjs";
 import Image from "next/image";
 
 const EventDetails = async ({
@@ -20,6 +21,9 @@ const EventDetails = async ({
     eventId: event._id,
     page: searchParams.page as string,
   });
+  const { sessionClaims } = auth();
+
+  const userId = sessionClaims?.userId as string;
 
   return (
     <>
@@ -49,7 +53,7 @@ const EventDetails = async ({
               </div>
             </div>
 
-            <CheckoutButton event={event} />
+            <CheckoutButton event={event} userId={userId} />
 
             <PayPalButton event={event} />
 
