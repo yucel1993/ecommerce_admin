@@ -6,18 +6,12 @@ import { handleError } from "@/lib/utils";
 import { CreateUserParams, UpdateUserParams } from "@/types";
 import User from "../models/user.modal";
 import Order from "../models/order.model";
-import { useRouter } from "next/navigation";
-import { useClerk } from "@clerk/nextjs";
 
 export async function createUser(user: CreateUserParams) {
   try {
     connectToDatabase();
 
     const newUser = await User.create(user);
-    const { signOut } = useClerk();
-    const router = useRouter();
-    signOut(() => router.push("/")); // Sign out and redirect to the home page
-
     return JSON.parse(JSON.stringify(newUser));
   } catch (error) {
     handleError(error);
