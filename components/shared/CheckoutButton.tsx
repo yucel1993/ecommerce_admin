@@ -1,23 +1,15 @@
 "use client";
 
 import { IEvent } from "@/lib/database/models/event.model";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
 import Checkout from "./Checkout";
 
-interface ExtendedEvent extends IEvent {
-  userId: string;
-}
-
-const CheckoutButton = ({
-  event,
-  userId,
-}: {
-  event: ExtendedEvent;
-  userId: string;
-}) => {
+const CheckoutButton = (event: IEvent) => {
+  const { user } = useUser();
+  const userId = user?.publicMetadata.userId as string;
   const hasStockFinished = +event.stock < 1;
 
   return (
