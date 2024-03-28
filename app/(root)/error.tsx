@@ -9,6 +9,7 @@ const Error = () => {
 
   const handleRefresh = () => {
     setRefreshing(true);
+    window.location.reload();
     router.push("/");
   };
 
