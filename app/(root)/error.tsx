@@ -1,17 +1,19 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Error = () => {
   const [refreshing, setRefreshing] = useState(false);
+  const router = useRouter();
 
   const handleRefresh = () => {
     setRefreshing(true);
-    window.location.reload(); // Reload the page
+    router.push("/");
   };
 
   return (
-    <div className="flex max-w-[1000px] mx-auto justify-center items-center">
+    <div className="flex max-w-[1000px] h-full mx-auto justify-center items-center">
       <p className="text-bold text-3xl text-purple-500">
         Oops! Connection has been lost. Refresh the page again 🚀
       </p>
