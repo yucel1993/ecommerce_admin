@@ -11,6 +11,7 @@ const CheckoutButton = ({ event }: { event: IEvent }) => {
   const { user } = useUser();
   const userId = user?.publicMetadata.userId as string;
   const hasStockFinished = +event.stock < 1;
+  console.log({ userId });
 
   return (
     <div className="flex items-center gap-3">
