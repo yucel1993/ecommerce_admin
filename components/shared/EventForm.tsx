@@ -153,10 +153,15 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
               <FormItem className="w-full">
                 <FormControl>
                   <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px-4 py-2">
-                    <Input
+                    <input
                       type="number"
                       placeholder="Stock Amount"
                       {...field}
+                      // Convert value to string
+                      onChange={(e) => {
+                        const value = parseFloat(e.target.value); // Convert input value to number
+                        field.onChange(isNaN(value) ? "" : value); // Ensure value is number or empty string
+                      }}
                       className="p-regular-16 border-0 bg-grey-50 outline-offset-0 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
                   </div>

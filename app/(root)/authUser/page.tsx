@@ -1,6 +1,6 @@
 const AuthUser = () => {
   return (
-    <div className="flex flex-col h-full max-w-[1100px] justify-center items-center mx-auto ">
+    <div className="flex flex-col h-full gap-y-10 max-w-[1100px] justify-center items-center mx-auto ">
       <p className=" font-bold text-2xl text-purple-500">
         Registration Successfull 🙂
       </p>
