@@ -4,7 +4,7 @@ const AuthUser = () => {
       <p className=" font-bold text-2xl text-purple-500">
         Registration Successfull 🙂
       </p>
-      <p className="font-bold text-2xl text-blue-500/100">
+      <p className="font-bold text-2xl text-blue-500/100 text-center">
         Either refresh the Page or close this session and open a new session to
         validate your crediantials 🚀
       </p>
