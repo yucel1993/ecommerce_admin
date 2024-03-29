@@ -57,7 +57,9 @@ export default async function Home({ searchParams }: SearchParamProps) {
           <Search />
           <CategoryFilter />
         </div>
-
+        <div className="max-sm:block max-sm:h-[100px] ">
+          {/* <h2>Our Wonderwull Products</h2> */}
+        </div>
         <Collection
           data={events?.data}
           emptyTitle="No Products Found"
